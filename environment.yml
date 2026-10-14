@@ -1,0 +1,12 @@
+name: k2bench
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python>=3.10
+  - kraken2
+  - insilicoseq
+  - seqkit
+  - pandas
+  - matplotlib
+  - pytest

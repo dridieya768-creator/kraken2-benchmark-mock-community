@@ -1,0 +1,5 @@
+ 2.00	200	200	U	0	unclassified
+98.00	9800	0	R	1	root
+98.00	9800	0	D	2	  Bacteria
+50.00	5000	5000	S	562	        Escherichia coli
+ 1.20	120	120	S	623	        Shigella flexneri

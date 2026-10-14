@@ -1,0 +1,8 @@
+__pycache__/
+.pytest_cache/
+results/
+*.fastq
+*.fastq.gz
+*.fasta
+*.kreport
+db/

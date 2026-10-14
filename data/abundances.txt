@@ -1,0 +1,10 @@
+# Format InSilicoSeq : identifiant du génome dans genomes.fasta <tab> abondance (fractions, somme = 1)
+# À ADAPTER : remplace les identifiants par ceux de ton fichier genomes.fasta
+# Vibrio cholerae est le contrôle négatif : ne pas l'inclure dans genomes.fasta
+GCF_ECOLI	0.5
+GCF_BSUB	0.3
+GCF_SAUR	0.1
+GCF_PAER	0.0389
+GCF_SFLEX	0.01
+GCF_LMONO	0.001
+GCF_SENT	0.0001
