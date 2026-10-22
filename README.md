@@ -1,49 +1,63 @@
-# Benchmark de Kraken2 sur une communauté mock simulée
+# Kraken2 benchmark on a simulated mock community
 
-Quelle est la précision de Kraken2 pour la classification taxonomique de reads Illumina,
-et jusqu'à quelle abondance détecte-t-il une espèce ? Ce dépôt mesure les **faux positifs**,
-le **rappel** et la **limite de détection** en fonction du seuil `--confidence`.
+How precise is Kraken2 at classifying Illumina reads taxonomically, and down to what abundance can it
+detect a species? This repository measures **false positives**, **recall** and the **limit of detection**
+as a function of the `--confidence` threshold.
 
-## Méthode
-1. **Communauté mock** : 7 espèces bactériennes à abondances de 50 % à 0,01 %, dont deux espèces
-   proches (*Escherichia coli*, *Shigella flexneri*), plus un contrôle négatif absent du mélange
-   (*Vibrio cholerae*). Vérité terrain : `data/truth.csv`.
-2. **Simulation** : reads Illumina paired-end (modèle NovaSeq, 2 M reads) avec [InSilicoSeq](https://github.com/HadrienG/InSilicoSeq).
-3. **Classification** : Kraken2 avec la base `[À COMPLÉTER : nom et version de la base]`,
-   seuils `--confidence` = 0, 0.05, 0.1, 0.2, 0.5.
-4. **Évaluation** : `analyse.py` compare les espèces détectées (≥ `--min-reads` reads) à la vérité.
+**Key result:** `[TO FILL: one sentence with your main finding and its number, e.g. best F1 at --confidence X, lowest abundance detected]`
+
+## Method
+
+1. **Mock community**: 7 bacterial species with abundances from 50% down to 0.01%, including two close
+   species (*Escherichia coli*, *Shigella flexneri*) and a negative control absent from the mixture
+   (*Vibrio cholerae*). Ground truth: `data/truth.csv`.
+2. **Simulation**: Illumina paired-end reads (NovaSeq model, 2 M reads) generated with
+   [InSilicoSeq](https://github.com/HadrienG/InSilicoSeq).
+3. **Classification**: Kraken2 with the database `[TO FILL: database name and version]`,
+   `--confidence` = 0, 0.05, 0.1, 0.2, 0.5.
+4. **Evaluation**: `analyse.py` compares the species detected (at least `--min-reads` reads,
+   default `[TO FILL: value]`) with the ground truth.
 
 ## Installation
+
 ```bash
 mamba env create -f environment.yml
 conda activate k2bench
 ```
 
-## Utilisation
-Place les génomes de la communauté dans `data/genomes.fasta` (identifiants cohérents avec
-`data/abundances.txt`), puis :
+## Usage
+
+Put the community genomes in `data/genomes.fasta` (identifiers must match `data/abundances.txt`), then:
+
 ```bash
-./run_benchmark.sh /chemin/vers/base_kraken2
-pytest            # tests unitaires des fonctions de calcul
+./run_benchmark.sh /path/to/kraken2_database
+pytest            # unit tests for the metric functions
 ```
 
-## Résultats
-> À COMPLÉTER avec tes vrais chiffres : tableau `results/results.csv`, courbe précision/rappel
-> selon `--confidence`, abondance réelle vs estimée, liste des faux positifs.
+## Results
 
-| --confidence | Précision | Rappel | F1 | Limite de détection |
-|---|---|---|---|---|
-| 0.0 | | | | |
-| 0.1 | | | | |
-| 0.5 | | | | |
+`[TO FILL: results from results/results.csv: precision/recall curve across --confidence, true vs estimated abundance, list of false positives]`
 
-## Limites
-- Données simulées : pas de contaminations ni de biais de préparation réels.
-- Résultats dépendants de la base de référence et du paramètre `--min-reads`.
-- Une seule réplique de simulation `[À COMPLÉTER si tu en fais plusieurs]`.
+| `--confidence` | Precision | Recall | F1 | False positives | Limit of detection |
+|---|---|---|---|---|---|
+| 0.0 | | | | | |
+| 0.05 | | | | | |
+| 0.1 | | | | | |
+| 0.2 | | | | | |
+| 0.5 | | | | | |
 
-## Pistes
-Correction d'abondance avec Bracken, comparaison avec Kaiju / MetaPhlAn, pipeline Snakemake.
+*Limit of detection = lowest true abundance at which the species is still detected.*
 
-## Licence
+## Limitations
+
+- Simulated data: no real contamination or library-preparation bias.
+- Results depend on the reference database and on the `--min-reads` parameter.
+- Single simulation replicate `[TO FILL: update if you run several]`.
+
+## Next steps
+
+Abundance correction with Bracken, comparison with Kaiju / MetaPhlAn, a Snakemake pipeline.
+
+## License
+
 MIT
